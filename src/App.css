@@ -7,7 +7,7 @@
   background-position: center;
   background-repeat: no-repeat;
 }
-main {
+.board-writing {
   display: flex;
   justify-content: center;
   gap: 3rem;
