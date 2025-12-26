@@ -1,5 +1,6 @@
 import './Board.css'
 import boardIcon from '../../assets/boards-icon.png';
+import BoardList from '../boards/BoardList';
 
 const Board = () => {
   return (
@@ -9,10 +10,7 @@ const Board = () => {
       <h4>Boards</h4>
       </div>
       <div className="board-items">
-        <div>Christmas Family Wishlist</div>
-        <div>New year Resolution</div>
-        <div>Seattle Meetup</div>
-        <div>New Year Resolution Ideas</div>
+        <BoardList />
       </div>
     </div>
   )
