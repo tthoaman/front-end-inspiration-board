@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Task from './Card.jsx';
+import Card from './Card.jsx';
 import './CardList.css';
 
 const CardList = ({ lists, handleDeleteCard, handleCreateCard, handleLikeCard}) => {
