@@ -11,7 +11,7 @@ function App() {
         <Board />
       </aside>
       <main>
-        <div className='quote-writing'>
+        <div className='board-writing'>
           <h1>It always seems impossible</h1>
           <h1>Until it is done</h1>
         </div>
