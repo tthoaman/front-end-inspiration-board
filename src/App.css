@@ -7,22 +7,24 @@
   background-position: center;
   background-repeat: no-repeat;
 }
-.board-writing {
-  display: flex;
-  justify-content: space-around;
-  gap: 3rem;
-}
 
 h1 {
   margin: 0;
   text-align: center;
 }
 
+.board-writing {
+  display: flex;
+  justify-content: space-around;
+  gap: 3rem;
+}
+
 .left-writing, .right-writing {
   color: black;
   background-color: bisque;
   padding: 0.5rem 1rem;
-  margin-block: 1rem;
+  margin-block: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.55);
 }
 
 .left-writing {
@@ -31,6 +33,16 @@ h1 {
 
 .right-writing {
   transform: rotate(3deg);
+}
+
+
+.selected-board-title {
+  color: black;
+  background-color: bisque;
+  width:fit-content;
+  margin: 0 auto; 
+  padding-inline: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.55);
 }
 
 
