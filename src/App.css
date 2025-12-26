@@ -9,13 +9,28 @@
 }
 .board-writing {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   gap: 3rem;
 }
 
 h1 {
   margin: 0;
   text-align: center;
+}
+
+.left-writing, .right-writing {
+  color: black;
+  background-color: bisque;
+  padding: 0.5rem 1rem;
+  margin-block: 1rem;
+}
+
+.left-writing {
+  transform: rotate(-3deg);
+}
+
+.right-writing {
+  transform: rotate(3deg);
 }
 
 

@@ -12,8 +12,8 @@ function App() {
       </aside>
       <main>
         <div className='board-writing'>
-          <h1>It always seems impossible</h1>
-          <h1>Until it is done</h1>
+          <h1 className="left-writing">It always seems impossible</h1>
+          <h1 className="right-writing">Until it is done</h1>
         </div>
         {/* <CardList /> */}
       </main>
