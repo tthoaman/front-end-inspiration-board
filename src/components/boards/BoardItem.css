@@ -1,0 +1,14 @@
+li {
+  list-style: none;
+}
+
+.title-style {
+  font-size: 16px;;
+}
+.owner-style {
+  font-size: 12px;
+}
+
+/* .select-button-wrapper {
+  display: flex;
+} */
