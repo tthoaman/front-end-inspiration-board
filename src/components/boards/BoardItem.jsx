@@ -1,7 +1,7 @@
 import './BoardItem.css';
 import PropTypes from 'prop-types';
 
-const BoardItem = ({id, title, owner, onSelectBoard}) => {
+const BoardItem = ({id, title, owner, onSelectBoard, isSelected}) => {
 
   const onSelected = () => {
     onSelectBoard(id)
@@ -10,9 +10,8 @@ const BoardItem = ({id, title, owner, onSelectBoard}) => {
 
   return(
     <li>
-      <button onClick={()=> onSelected(id)} className="select-button-wrapper">
+      <button onClick={()=> onSelected(id)} className={`select-button-wrapper ${isSelected ? "selected": ""}`}>
         <div className="title-style">{title} <span className="owner-style">({owner})</span></div>
-        {/* <div className="owner-style">({owner})</div> */}
       </button>
     </li>
   )

@@ -9,13 +9,13 @@ li {
   text-align: start;
 }
 
+.selected {
+  border-left:4px solid rgb(229, 206, 54);
+}
+
 .title-style {
   font-size: 16px;;
 }
 .owner-style {
   font-size: 12px;
 }
-
-/* .select-button-wrapper {
-  display: flex;
-} */
