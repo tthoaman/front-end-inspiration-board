@@ -36,7 +36,7 @@ h1 {
 }
 
 
-.selected-board-title {
+.selected-board-wrapper {
   color: black;
   background-color: bisque;
   width:fit-content;
@@ -45,4 +45,6 @@ h1 {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.55);
 }
 
-
+.banner-owner {
+  font-size: 14px;
+}

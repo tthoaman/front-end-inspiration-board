@@ -2,6 +2,13 @@ li {
   list-style: none;
 }
 
+.select-button-wrapper {
+  background-color: inherit;
+  color: inherit;
+  border: none;
+  text-align: start;
+}
+
 .title-style {
   font-size: 16px;;
 }

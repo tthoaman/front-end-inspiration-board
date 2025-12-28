@@ -25,8 +25,18 @@ function App() {
           <h1 className="left-writing">It always seems impossible</h1>
           <h1 className="right-writing">Until it is done</h1>
         </div>
-        <div className="selected-board-title">
-          <h1>{selectedBoard ? `${selectedBoard.title} (${selectedBoard.owner})`: "Select a board"}</h1>
+        <div className="selected-board-wrapper">
+          {selectedBoard ? (
+            <h1>
+              {selectedBoard.title}
+              <span className="banner-owner">
+                {" "}({selectedBoard.owner})
+              </span>
+            </h1>
+          ): (
+            <h1>Select a board</h1>
+          )
+        }
         </div>
         {/* <CardList /> */}
       </main>

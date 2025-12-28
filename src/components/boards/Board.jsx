@@ -5,7 +5,7 @@ import BoardList from '../boards/BoardList';
 const Board = ({boardsData, onSelectBoard, selectedBoardId}) => {
   return (
     <div className="boards-container">
-      <div className="boards-banner">
+      <div className="boards-top">
         <img src={boardIcon} alt="boards-icon" className='boards-icon'/>
       <h4>Boards</h4>
       </div>

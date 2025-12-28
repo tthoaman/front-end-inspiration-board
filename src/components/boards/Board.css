@@ -1,13 +1,13 @@
 .boards-container {
   min-height: 85vh;
-  min-width: 18vw;
+  min-width: 20vw;
   margin-left: 3rem;
   margin-top: 3rem;
   background-color: rgba(74, 61, 46, 0.70);
   padding-left: 1rem;
   border-radius: 8px;
 }
-.boards-banner {
+.boards-top {
   display: flex;
   justify-content: flex-start;
   align-items: center;
