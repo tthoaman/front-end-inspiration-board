@@ -1,5 +1,6 @@
 import BoardItem from "./BoardItem";
 import PropTypes from 'prop-types';
+import plusIcon from '../../assets/plus-icon.png'
 import './BoardList.css';
 
 const BoardList = ({boards, onSelectBoard, selectedBoardId}) => {
@@ -16,6 +17,10 @@ const BoardList = ({boards, onSelectBoard, selectedBoardId}) => {
           isSelected={item.board_id === selectedBoardId}
         />
       ))}
+      <button className="create-new-board-button">
+        <img src={plusIcon} alt="plus icon" width={13}/>{" "}
+        <span>Create new board</span>
+      </button>
     </ul>
   )
 }

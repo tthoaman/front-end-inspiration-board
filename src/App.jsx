@@ -25,7 +25,7 @@ function App() {
           <h1 className="left-writing">It always seems impossible</h1>
           <h1 className="right-writing">Until it is done</h1>
         </div>
-        <div className="selected-board-wrapper">
+        <div className="selected-board-banner">
           {selectedBoard ? (
             <h1>
               {selectedBoard.title}

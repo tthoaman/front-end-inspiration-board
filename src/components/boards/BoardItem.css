@@ -4,13 +4,15 @@ li {
 
 .select-button-wrapper {
   background-color: inherit;
-  color: inherit;
+  /* color: inherit; */
+  color: rgba(255, 255, 255, 0.70);
   border: none;
   text-align: start;
 }
 
 .selected {
   border-left:4px solid rgb(229, 206, 54);
+  color: white;
 }
 
 .title-style {
