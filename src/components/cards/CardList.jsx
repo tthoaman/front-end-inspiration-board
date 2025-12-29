@@ -1,36 +1,40 @@
 import PropTypes from 'prop-types';
 import Card from './Card.jsx';
+import AddCardButton from './AddCardButton.jsx';
 import './CardList.css';
 
-const CardList = ({ lists, handleDeleteCard, handleCreateCard, handleLikeCard}) => {
-  const getCardListJSX = (lists) => {
-    return lists.map((card) => {
+const CardList = ({ cards, deleteCard, createCard, likeCard }) => {
+  const noop = () => {};
+  const getCardListJSX = (cards) => {
+    return cards.map((card) => {
       return (
         <Card
-          card_id={card.card_id}
-          like_counts={card.like_counts}
-          message={card.message}
-          handleDeleteCard={handleDeleteCard}
-          handleCreateCard={handleCreateCard}
-          handleLikeCard={handleLikeCard}
+          card={card}
+          handleDeleteCard={deleteCard}
+          handleLikeCard={likeCard || noop}
         />
       );
     });
   };
-  return <ul className="cards__list no-bullet">{getCardListJSX(lists)}</ul>;
+  return (
+    <ul className="cards__list no-bullet">
+      {getCardListJSX(cards)}
+      <AddCardButton handleCreateCard={createCard || noop} />
+    </ul>
+  )
 };
 
 CardList.propTypes = {
-  lists: PropTypes.arrayOf(
+  cards: PropTypes.arrayOf(
     PropTypes.shape({
       card_id: PropTypes.number.isRequired,
-      like_counts: PropTypes.number.isRequired,
+      likesCount: PropTypes.number.isRequired,
       message: PropTypes.string.isRequired,
     })
   ).isRequired,
-  handleDeleteCard: PropTypes.func.isRequired,
-  handleCreateCard: PropTypes.func.isRequired,
-  handleLikeCard: PropTypes.func.isRequired,
+  deleteCard: PropTypes.func.isRequired,
+  createCard: PropTypes.func,
+  likeCard: PropTypes.func,
 };
 
 export default CardList;

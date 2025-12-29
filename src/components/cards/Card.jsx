@@ -1,41 +1,47 @@
 import PropTypes from 'prop-types';
 import './Card.css'
+import heartIcon from "../../assets/heart.svg";
+import pinRed from "../../assets/red-pin.png";
+import deleteIcon from "../../assets/delete.png";
 
-const Card = ({card, handleDeleteCard, handleCreateCard, handleLikeCard}) => {
-    const {card_id, message, likesCount} = card
-    const handleAddLikes = () => {
-        handleLikeCard(card_id);
-        console.log(`This post id is ${card_id}`);
-    };
+const Card = ({card, handleDeleteCard, handleLikeCard}) => {
+  const {card_id, message, likesCount} = card
 
-    return (
-        <>
-    <li className="cards__item">
-        {message}
-      <button
-        className="cards__heart__toggle button" 
-        onClick={() => handleLikeCard(card_id)}
-      >
-        ❤️ 
-      </button>
-        {likesCount}
-      <button
-        className="cards__item__remove button"
-        onClick={() => handleDeleteCard(card_id)}>
-      x</button>
-    </li>
-    <li className="cards__item">
-        
-      <button
-        className="cards__add_toggle button" 
-        onClick={() => handleCreateCard(card_id)}
-      >
-        ❤️ 
-      </button>
-        
-      
-    </li> </> 
-    );
+  return (
+    <article className="card">
+      {/* pin */}
+      <div className="card__pin" aria-hidden="true" style={{ backgroundImage: `url(${pinRed})` }} />
+
+      {/* message */}
+      <p className="card__message">{message}</p>
+
+      {/* footer */}
+      <footer className="card__footer">
+        <div className="card__likes">
+          {/* heart button */}
+          <button
+            className="card__likeBtn button"
+            onClick={() => handleLikeCard(card_id)}
+            aria-label="Like"
+          >
+            <img src={heartIcon} alt="Heart icon" />
+          </button>
+
+          {/* likes counter */}
+          <span className="card__likesCount">{likesCount}</span>
+        </div>
+
+        {/* delete */}
+        <button
+          className="card__delete button"
+          onClick={() => handleDeleteCard(card_id)}
+          aria-label="Delete card"
+        >
+          <img src={deleteIcon} alt="Delete icon" />
+        </button>
+      </footer>
+    </article>
+  );
 }; 
 
 Card.propTypes = {
@@ -47,7 +53,6 @@ Card.propTypes = {
         }
     ),
     handleDeleteCard: PropTypes.func.isRequired,
-    handleCreateCard: PropTypes.func.isRequired,
     handleLikeCard: PropTypes.func.isRequired,
 };
 
