@@ -36,13 +36,16 @@ h1 {
 }
 
 
-.selected-board-title {
+.selected-board-banner {
   color: black;
   background-color: bisque;
   width:fit-content;
   margin: 0 auto; 
   padding-inline: 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.55);
+  border-radius: 10px;
 }
 
-
+.banner-owner {
+  font-size: 14px;
+}
