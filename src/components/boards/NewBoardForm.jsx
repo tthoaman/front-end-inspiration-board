@@ -1,31 +1,20 @@
 import { useState } from 'react';
+import './NewBoardForm.css'
 
 
-const kDefaultFormState = {
-  title: '',
-  owner: ''
-};
+const kDefaultFormState = { title: '', owner: '' };
 
 const NewBoardForm = ({ onHandleSubmit }) => {
   const [formData, setFormData] = useState(kDefaultFormState);
 
   const handleChange = (event) => {
-    const inputValue = event.target.value;
-    const inputName = event.target.name;
-    setFormData(formData => {
-      return {
-        ...formData,
-        [inputName]: inputValue
-      };
-    });
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const newBoard = {
-      ...formData
-    };
-    onHandleSubmit(newBoard);
+    onHandleSubmit({ ...formData });
     setFormData(kDefaultFormState);
   };
 
@@ -48,11 +37,9 @@ const NewBoardForm = ({ onHandleSubmit }) => {
 
   return (
     <div>
-      <h1>Create a board</h1>
       <form onSubmit={handleSubmit}>
-        {makeControlledInput('title')}
-        {makeControlledInput('owner')}
-
+        {makeControlledInput('Title')}
+        {makeControlledInput('Owner')}
         <div>
           <input type="submit" value="Create board" />
         </div>
