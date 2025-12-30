@@ -3,6 +3,7 @@ import axios from 'axios'
 import CardList from './components/cards/CardList';
 import Board from './components/boards/Board';
 import './App.css'
+const BACKEND_URL = import.meta.env.VITE_APP_BACKEND_URL;
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -22,7 +23,7 @@ function App() {
     }
 
     axios
-      .get(`http://127.0.0.1:5000/boards/${board.board_id}/cards`)
+      .get(`${BACKEND_URL}/boards/${board.board_id}/cards`)
       .then((response) => {
         setCards(response.data.cards);
       })
@@ -33,7 +34,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get('http://127.0.0.1:5000/boards')
+      .get(`${BACKEND_URL}/boards`)
       .then((response) => {
         setBoards(response.data.boards);
       })
@@ -43,7 +44,7 @@ function App() {
   }, []);
 
   const handleDeleteCard = (id) => {
-    axios.delete(`http://127.0.0.1:5000/cards/${id}`)
+    axios.delete(`${BACKEND_URL}/cards/${id}`)
     .then(() => {
       setCards((prevCards) => prevCards.filter((card) => card.card_id !== id));
     })
@@ -54,7 +55,7 @@ function App() {
 
   const handleCreateCard = (message) => {
     axios.post(
-      `http://127.0.0.1:5000/boards/${selectedBoard.board_id}/cards`,
+      `${BACKEND_URL}/boards/${selectedBoard.board_id}/cards`,
       { message }
     )
     .then((response) => {
@@ -66,7 +67,7 @@ function App() {
   };
 
   const handleLikeCard = (id) => {
-    axios.post(`http://127.0.0.1:5000/cards/${id}/like`)
+    axios.post(`${BACKEND_URL}/cards/${id}/like`)
     .then((response) => {
       setCards((prevCards) =>
         prevCards.map((c) => (c.card_id === response.data.card_id ? response.data : c))
