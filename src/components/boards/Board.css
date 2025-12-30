@@ -1,14 +1,32 @@
 .boards-container {
-  min-height: 85vh;
-  min-width: 20vw;
-  margin-left: 3rem;
-  margin-top: 3rem;
-  background-color: rgba(74, 61, 46, 0.70);
-  padding-left: 0.5rem;
-  border-radius: 8px;
+  height: 100%;
+  width: 100%;
+
+  background-color: rgba(92, 58, 32, 0.35);
+  
+  background:
+  linear-gradient(
+    140deg,
+    rgba(44, 27, 15, 0.82) 0%,
+    rgba(58, 36, 20, 0.62) 40%,
+    rgba(58, 36, 20, 0.30) 100%
+  ),
+  linear-gradient(
+    180deg,
+    rgba(255, 235, 210, 0.28) 0%,
+    rgba(255, 235, 210, 0.12) 35%,
+    rgba(255, 235, 210, 0.00) 100%
+  );
+  border-radius: 18px;
+  box-sizing: border-box;
+  border: 2px solid #835C3E;
 }
 
-.boards-container h4 {
+.board-header{
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.boards-container .board-header {
   margin: 0;
 }
 
@@ -17,8 +35,9 @@
   justify-content: flex-start;
   align-items: center;
   padding-top: 0.75rem;
-  padding-left: 0.5rem;
+  padding: 15px;
   gap: 1rem;
+  border-bottom: 2px solid #835C3E;
 }
 
 .boards-icon { 
@@ -28,4 +47,7 @@
 
 .board-items {
   line-height: 2rem;
+  max-height: calc(100% - 48px);
+  overflow-y: auto;
+  padding: 0px;
 }

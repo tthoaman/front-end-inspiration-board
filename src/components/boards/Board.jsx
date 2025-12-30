@@ -7,7 +7,7 @@ const Board = ({boardsData, onSelectBoard, selectedBoardId}) => {
     <div className="boards-container">
       <div className="boards-top">
         <img src={boardIcon} alt="boards-icon" className='boards-icon'/>
-      <h4>Boards</h4>
+        <h4 className='board-header'>Boards</h4>
       </div>
       <div className="board-items">
         <BoardList 

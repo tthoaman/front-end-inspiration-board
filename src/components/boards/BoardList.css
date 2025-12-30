@@ -1,11 +1,23 @@
 ul {
-  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+
+ul > li {
+  padding: 5px;
 }
 
 .create-new-board-button {
   background-color: inherit;
-  color: inherit;
+  color: rgba(255, 255, 255, 0.87);
   border: none;
   font-size: medium;
   font-weight: bold;
+  display: block;
+  width: 100%;
+  text-align: start;
+  padding: 5px;
 }
+

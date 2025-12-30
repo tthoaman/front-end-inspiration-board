@@ -1,11 +1,10 @@
-/* shared base */
-.card,
-.add_card {
+/* shared base only for actual cards */
+.card {
   position: relative;
   width: 260px;
-  height: 170px; /* 👈 SAME SIZE */
+  height: 170px;
 
-  padding: 28px 18px 14px;
+  padding: 40px 18px 14px; /* extra top space so the pin isn't clipped */
   border-radius: 14px;
 
   background: #f7f2e8;
@@ -24,8 +23,8 @@
 /* ===================== */
 .card__pin {
   position: absolute;
-  top: -14px;
-  left: 18px; /* 👈 offset from left border */
+  top: -6px;
+  left: 18px;
 
   width: 36px;
   height: 36px;
@@ -49,6 +48,12 @@
 
   word-wrap: break-word;
   white-space: pre-wrap;
+
+  /* Make long content scroll within the card */
+  flex: 1;
+  min-height: 0; /* required so flex child can shrink & scroll */
+  overflow-y: auto;
+  scrollbar-gutter: stable; /* keeps layout stable when scrollbar appears */
 }
 
 /* ===================== */
@@ -56,7 +61,7 @@
 /* ===================== */
 .card__footer {
   margin-top: auto;
-  margin-bottom: -20px;
+  margin-bottom: -10px;
 
   display: flex;
   align-items: center;
@@ -102,8 +107,33 @@
 /* ===================== */
 /* Like button */
 /* ===================== */
-.card__likeBtn:hover {
-  background: rgba(0, 0, 0, 0.08);
+
+/* Fill heart red on hover using mask overlay */
+.card__likeBtn {
+  position: relative;
+}
+
+.card__likeBtn::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #D7263D; /* red fill */
+  -webkit-mask: url(../../assets/heart.svg) no-repeat center / contain;
+  mask: url(../../assets/heart.svg) no-repeat center / contain;
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.card__likeBtn:hover::after {
+  opacity: 1;
+}
+
+.card__likeBtn:hover img {
+  opacity: 0;
 }
 
 /* ===================== */

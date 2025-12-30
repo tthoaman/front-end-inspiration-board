@@ -1,11 +1,29 @@
 .app {
   display: grid;
-  grid-template-columns: 260px 1fr;
-  min-height: 100vw; 
+  grid-template-columns: 300px 1fr; /* sidebar ~25% with a sensible min width */
+  min-height: 100vh; /* fill viewport height */
+  overflow: hidden; /* prevent children from overflowing the app container */
   background-image: url(assets/corkboard-image.jpg);
   background-size: cover;
-  background-position: center;
+  /* background-position: center; */
   background-repeat: no-repeat;
+}
+
+.sidebar {
+  height: 100vh;
+  overflow-y: auto; /* scroll if boards list grows */
+  padding: 1rem; /* internal spacing instead of child margins */
+  box-sizing: border-box;
+}
+
+main {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto auto 1fr; /* header, banner, cards */
+  gap: 0.5rem;
+  padding: 1rem 1rem 1rem 0rem;
+  box-sizing: border-box;
+  overflow: hidden; /* allow inner sections to manage scroll */
 }
 
 h1 {
@@ -48,4 +66,20 @@ h1 {
 
 .banner-owner {
   font-size: 14px;
+}
+
+.card-list {
+  margin-top: 2rem;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 12px;
+  box-sizing: border-box;
+}
+
+/* If the browser supports reserving scrollbar space, remove the fallback padding */
+@supports (scrollbar-gutter: stable) {
+  .card-list {
+    scrollbar-gutter: stable both-edges;
+    padding-right: 0;
+  }
 }

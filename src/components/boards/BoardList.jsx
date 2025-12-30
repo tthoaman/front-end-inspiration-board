@@ -6,7 +6,7 @@ import './BoardList.css';
 const BoardList = ({boards, onSelectBoard, selectedBoardId}) => {
 
   return (
-    <ul>
+    <ul className="board-list">
       {boards.map((item) => (
         <BoardItem 
           key={item.board_id}
@@ -17,10 +17,12 @@ const BoardList = ({boards, onSelectBoard, selectedBoardId}) => {
           isSelected={item.board_id === selectedBoardId}
         />
       ))}
-      <button className="create-new-board-button">
-        <img src={plusIcon} alt="plus icon" width={13}/>{" "}
-        <span>Create new board</span>
-      </button>
+      <li>
+        <button className="create-new-board-button">
+          <img src={plusIcon} alt="plus icon" width={13}/>{" "}
+          <span>Create new board</span>
+        </button>
+      </li>
     </ul>
   )
 }
@@ -32,8 +34,9 @@ BoardList.propTypes = {
       title: PropTypes.string.isRequired,
       owner: PropTypes.string.isRequired
     })
-  ).isRequired
-}
-
+  ).isRequired,
+  onSelectBoard: PropTypes.func.isRequired,
+  selectedBoardId: PropTypes.number,
+};
 
 export default BoardList;

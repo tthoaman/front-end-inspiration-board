@@ -9,8 +9,8 @@ const BoardItem = ({id, title, owner, onSelectBoard, isSelected}) => {
   }
 
   return(
-    <li>
-      <button onClick={()=> onSelected(id)} className={`select-button-wrapper ${isSelected ? "selected": ""}`}>
+    <li className={isSelected ? "selected" : ""}>
+      <button onClick={()=> onSelected(id)} className="select-button-wrapper">
         <div className="title-style">{title} <span className="owner-style">({owner})</span></div>
       </button>
     </li>

@@ -3,16 +3,23 @@ li {
 }
 
 .select-button-wrapper {
-  background-color: inherit;
-  /* color: inherit; */
+  background-color: transparent;
+  background: none;
+  -webkit-appearance: none;
+  appearance: none;
   color: rgba(255, 255, 255, 0.70);
   border: none;
   text-align: start;
+  padding: 0; /* remove default button padding */
+  width: 100%; /* align with container width */
+  display: block; /* use block layout to align left consistently */
+  padding-block: 8px; /* add vertical padding inside each item */
+  padding-inline: 0; /* keep left/right alignment flush */
 }
 
 .selected {
   border-left:4px solid rgb(229, 206, 54);
-  color: white;
+  background-color: rgba(176, 139, 139, 0.2); /* 20% opacity of #B08B8B */
 }
 
 .title-style {
