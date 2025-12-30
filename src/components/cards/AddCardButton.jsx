@@ -6,7 +6,7 @@ import addCardIcon from "../../assets/add-card.svg";
 import checkmarkIcon from "../../assets/checkmark.svg";
 import deleteIcon from "../../assets/delete.png";
 
-const AddCardButton = ({ handleCreateCard }) => {
+const AddCardButton = ({ onCreateCard }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [message, setMessage] = useState("");
 
@@ -21,7 +21,7 @@ const AddCardButton = ({ handleCreateCard }) => {
         const text = message.trim();
         if (!text) return;
         try {
-            handleCreateCard && handleCreateCard(text);
+            onCreateCard && onCreateCard(text);
         } finally {
             setMessage("");
             setIsEditing(false);
@@ -81,7 +81,7 @@ const AddCardButton = ({ handleCreateCard }) => {
 }; 
 
 AddCardButton.propTypes = {
-        handleCreateCard: PropTypes.func,
+    onCreateCard: PropTypes.func,
 };
 
 export default AddCardButton;

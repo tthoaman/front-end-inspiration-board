@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 const BoardItem = ({id, title, owner, onSelectBoard, isSelected}) => {
 
-  const onSelected = () => {
+  const handleSelect = () => {
     onSelectBoard(id);
   }
 
   return(
     <li className={isSelected ? "selected" : ""}>
-      <button onClick={()=> onSelected(id)} className="select-button-wrapper">
+      <button onClick={handleSelect} className="select-button-wrapper">
         <div className="title-style">{title} <span className="owner-style">({owner})</span></div>
       </button>
     </li>

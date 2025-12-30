@@ -3,15 +3,15 @@ import Card from './Card.jsx';
 import AddCardButton from './AddCardButton.jsx';
 import './CardList.css';
 
-const CardList = ({ cards, deleteCard, createCard, likeCard }) => {
+const CardList = ({ cards, onDeleteCard, onCreateCard, onLikeCard }) => {
   const noop = () => {};
   const getCardListJSX = (cards) => {
     return cards.map((card) => {
       return (
         <Card
           card={card}
-          handleDeleteCard={deleteCard}
-          handleLikeCard={likeCard || noop}
+          onDeleteCard={onDeleteCard}
+          onLikeCard={onLikeCard || noop}
         />
       );
     });
@@ -19,7 +19,7 @@ const CardList = ({ cards, deleteCard, createCard, likeCard }) => {
   return (
     <ul className="cards__list no-bullet">
       {getCardListJSX(cards)}
-      <AddCardButton handleCreateCard={createCard || noop} />
+      <AddCardButton onCreateCard={onCreateCard || noop} />
     </ul>
   )
 };
@@ -32,9 +32,9 @@ CardList.propTypes = {
       message: PropTypes.string.isRequired,
     })
   ).isRequired,
-  deleteCard: PropTypes.func.isRequired,
-  createCard: PropTypes.func,
-  likeCard: PropTypes.func,
+  onDeleteCard: PropTypes.func.isRequired,
+  onCreateCard: PropTypes.func,
+  onLikeCard: PropTypes.func,
 };
 
 export default CardList;

@@ -10,7 +10,7 @@ function App() {
   const [selectedBoard, setSelectedBoard] = useState(null);
 
   const handleSelectBoard = (boardId) => {
-    const selected = boards.find((b) => b.board_id === boardId);
+    const selected = boards.find((b) => b.id === boardId);
     setSelectedBoard(selected ?? null)
     showCardsForSelectedBoard(selected);
   };
@@ -22,7 +22,7 @@ function App() {
     }
 
     axios
-      .get(`http://127.0.0.1:5000/boards/${board.board_id}/cards`)
+      .get(`http://127.0.0.1:5000/boards/${board.id}/cards`)
       .then((response) => {
         const cardsData = Array.isArray(response.data)
           ? response.data
@@ -51,7 +51,7 @@ function App() {
 
         setBoards(
           boardsData.map((board) => ({
-            board_id: board.board_id ?? board.id,
+            id: board.board_id ?? board.id,
             title: board.title,
             owner: board.owner,
           }))
@@ -74,7 +74,7 @@ function App() {
 
   const handleCreateCard = (message) => {
     axios.post(
-      `http://127.0.0.1:5000/boards/${selectedBoard.board_id}/cards`,
+      `http://127.0.0.1:5000/boards/${selectedBoard.id}/cards`,
       { message }
     )
     .then((response) => {
@@ -89,9 +89,10 @@ function App() {
     <div className='app'>
       <aside className="sidebar">
         <Board
-        boardsData={boards} 
-        onSelectBoard={handleSelectBoard}
-        selectedBoardId={selectedBoard?.board_id}/>
+          boards={boards}
+          onSelectBoard={handleSelectBoard}
+          selectedBoardId={selectedBoard?.id}
+        />
       </aside>
       <main>
         <div className="board-writing">
@@ -112,7 +113,11 @@ function App() {
         }
         </div>
         <div className="card-list">
-          <CardList cards={cards} deleteCard={handleDeleteCard} createCard={handleCreateCard} />
+          <CardList
+            cards={cards}
+            onDeleteCard={handleDeleteCard}
+            onCreateCard={handleCreateCard}
+          />
         </div>
       </main>
     </div>

@@ -2,7 +2,7 @@ import './Board.css'
 import boardIcon from '../../assets/boards-icon.png';
 import BoardList from '../boards/BoardList';
 
-const Board = ({boardsData, onSelectBoard, selectedBoardId}) => {
+const Board = ({boards, onSelectBoard, selectedBoardId}) => {
   return (
     <div className="boards-container">
       <div className="boards-top">
@@ -11,9 +11,9 @@ const Board = ({boardsData, onSelectBoard, selectedBoardId}) => {
       </div>
       <div className="board-items">
         <BoardList 
-        boards={boardsData}
-        onSelectBoard={onSelectBoard}
-        selectedBoardId={selectedBoardId}
+          boards={boards}
+          onSelectBoard={onSelectBoard}
+          selectedBoardId={selectedBoardId}
         />
       </div>
     </div>

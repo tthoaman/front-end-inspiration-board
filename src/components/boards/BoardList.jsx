@@ -9,12 +9,12 @@ const BoardList = ({boards, onSelectBoard, selectedBoardId}) => {
     <ul className="board-list">
       {boards.map((item) => (
         <BoardItem 
-          key={item.board_id}
-          id={item.board_id}
+          key={item.id}
+          id={item.id}
           title={item.title}
           owner={item.owner}
           onSelectBoard={onSelectBoard}
-          isSelected={item.board_id === selectedBoardId}
+          isSelected={item.id === selectedBoardId}
         />
       ))}
       <li>

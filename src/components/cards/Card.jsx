@@ -4,7 +4,7 @@ import heartIcon from "../../assets/heart.svg";
 import pinRed from "../../assets/red-pin.png";
 import deleteIcon from "../../assets/delete.png";
 
-const Card = ({card, handleDeleteCard, handleLikeCard}) => {
+const Card = ({card, onDeleteCard, onLikeCard}) => {
   const {card_id, message, likesCount} = card
 
   return (
@@ -21,7 +21,7 @@ const Card = ({card, handleDeleteCard, handleLikeCard}) => {
           {/* heart button */}
           <button
             className="card__likeBtn button"
-            onClick={() => handleLikeCard(card_id)}
+            onClick={() => onLikeCard(card_id)}
             aria-label="Like"
           >
             <img src={heartIcon} alt="Heart icon" />
@@ -34,7 +34,7 @@ const Card = ({card, handleDeleteCard, handleLikeCard}) => {
         {/* delete */}
         <button
           className="card__delete button"
-          onClick={() => handleDeleteCard(card_id)}
+          onClick={() => onDeleteCard(card_id)}
           aria-label="Delete card"
         >
           <img src={deleteIcon} alt="Delete icon" />
@@ -52,8 +52,8 @@ Card.propTypes = {
         likesCount: PropTypes.number.isRequired,
         }
     ),
-    handleDeleteCard: PropTypes.func.isRequired,
-    handleLikeCard: PropTypes.func.isRequired,
+    onDeleteCard: PropTypes.func.isRequired,
+    onLikeCard: PropTypes.func.isRequired,
 };
 
 export default Card;
