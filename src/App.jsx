@@ -7,35 +7,39 @@ import './App.css'
 function App() {
   const [cards, setCards] = useState([]);
   const [boards, setBoards] = useState([]);
-  const [errorMessage, setErrorMessage] = useState('');
   const [selectedBoard, setSelectedBoard] = useState(null);
 
   const handleSelectBoard = (boardId) => {
     const selected = boards.find((b) => b.board_id === boardId);
     setSelectedBoard(selected ?? null)
+    showCardsForSelectedBoard(selected);
   };
 
-  // useEffect(() => {
-  //   axios
-  //     .get('http://127.0.0.1:5000/boards/1/cards')
-  //     .then((response) => {
-  //       const cardsData = Array.isArray(response.data)
-  //         ? response.data
-  //         : response.data?.cards ?? [];
+  const showCardsForSelectedBoard = (board) => {
+    if (!board) {
+      setCards([]);
+      return;
+    }
 
-  //       setCards(
-  //         cardsData.map((card) => ({
-  //           card_id: card.card_id ?? card.id,
-  //           message: card.message,
-  //           likesCount: card.likes_count ?? card.likesCount ?? 0,
-  //         }))
-  //       );
-  //     })
-  //     .catch((error) => {
-  //       setErrorMessage('Error fetching cards. Please try again later.');
-  //       console.error('There was an error fetching the cards!', error);
-  //     });
-  // }, []);
+    axios
+      .get(`http://127.0.0.1:5000/boards/${board.board_id}/cards`)
+      .then((response) => {
+        const cardsData = Array.isArray(response.data)
+          ? response.data
+          : response.data?.cards ?? [];
+
+        setCards(
+          cardsData.map((card) => ({
+            card_id: card.card_id ?? card.id,
+            message: card.message,
+            likesCount: card.likes_count ?? card.likesCount ?? 0,
+          }))
+        );
+      })
+      .catch((error) => {
+        console.error('There was an error fetching the cards!', error);
+      });
+  };
 
   useEffect(() => {
     axios
@@ -54,40 +58,31 @@ function App() {
         );
       })
       .catch((error) => {
-        setErrorMessage('Error fetching boards. Please try again later.');
         console.error('There was an error fetching the boards!', error);
       });
   }, []);
 
-
   const handleDeleteCard = (id) => {
     axios.delete(`http://127.0.0.1:5000/cards/${id}`)
     .then(() => {
-        setCards((prevCards) => prevCards.filter((card) => card.card_id !== id));
+      setCards((prevCards) => prevCards.filter((card) => card.card_id !== id));
     })
     .catch((error) => {
-        setErrorMessage('Error deleting card. Please try again later.');
-        console.error('There was an error deleting the card!', error);
+      console.error('There was an error deleting the card!', error);
     });
   };
 
-  const handleCreateCard = async (message) => {
-      const response = await axios.post(
-        `http://127.0.0.1:5000/boards/${selectedBoard.board_id}/cards`,
-        { message }
-      );
-
-      const created = Array.isArray(response.data)
-        ? response.data[0]
-        : response.data?.card ?? response.data;
-
-      const newCard = {
-        card_id: created?.card_id ?? created?.id,
-        message: created?.message ?? message,
-        likesCount: created?.likes_count ?? created?.likesCount ?? 0,
-      };
-
-      setCards((prev) => [newCard, ...prev]);
+  const handleCreateCard = (message) => {
+    axios.post(
+      `http://127.0.0.1:5000/boards/${selectedBoard.board_id}/cards`,
+      { message }
+    )
+    .then((response) => {
+      setCards((prev) => [...prev, response.data]);
+    })
+    .catch((error) => {
+      console.error('There was an error creating the card!', error);
+    });
   };
 
   return (

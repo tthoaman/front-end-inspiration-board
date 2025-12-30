@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 const BoardItem = ({id, title, owner, onSelectBoard, isSelected}) => {
 
   const onSelected = () => {
-    onSelectBoard(id)
-    // console.log("selected!", id)
+    onSelectBoard(id);
   }
 
   return(
