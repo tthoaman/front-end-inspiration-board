@@ -10,7 +10,7 @@ function App() {
   const [selectedBoard, setSelectedBoard] = useState(null);
 
   const handleSelectBoard = (boardId) => {
-    const selected = boards.find((b) => b.id === boardId);
+    const selected = boards.find((b) => b.board_id === boardId);
     setSelectedBoard(selected ?? null)
     showCardsForSelectedBoard(selected);
   };
@@ -22,19 +22,9 @@ function App() {
     }
 
     axios
-      .get(`http://127.0.0.1:5000/boards/${board.id}/cards`)
+      .get(`http://127.0.0.1:5000/boards/${board.board_id}/cards`)
       .then((response) => {
-        const cardsData = Array.isArray(response.data)
-          ? response.data
-          : response.data?.cards ?? [];
-
-        setCards(
-          cardsData.map((card) => ({
-            id: card.card_id ?? card.id,
-            message: card.message,
-            likes: card.likes_count ?? card.likes ?? 0,
-          }))
-        );
+        setCards(response.data.cards);
       })
       .catch((error) => {
         console.error('There was an error fetching the cards!', error);
@@ -45,17 +35,7 @@ function App() {
     axios
       .get('http://127.0.0.1:5000/boards')
       .then((response) => {
-        const boardsData = Array.isArray(response.data)
-          ? response.data
-          : response.data?.boards ?? [];
-
-        setBoards(
-          boardsData.map((board) => ({
-            id: board.board_id ?? board.id,
-            title: board.title,
-            owner: board.owner,
-          }))
-        );
+        setBoards(response.data.boards);
       })
       .catch((error) => {
         console.error('There was an error fetching the boards!', error);
@@ -65,7 +45,7 @@ function App() {
   const handleDeleteCard = (id) => {
     axios.delete(`http://127.0.0.1:5000/cards/${id}`)
     .then(() => {
-      setCards((prevCards) => prevCards.filter((card) => card.id !== id));
+      setCards((prevCards) => prevCards.filter((card) => card.card_id !== id));
     })
     .catch((error) => {
       console.error('There was an error deleting the card!', error);
@@ -74,20 +54,26 @@ function App() {
 
   const handleCreateCard = (message) => {
     axios.post(
-      `http://127.0.0.1:5000/boards/${selectedBoard.id}/cards`,
+      `http://127.0.0.1:5000/boards/${selectedBoard.board_id}/cards`,
       { message }
     )
     .then((response) => {
-      const card = response.data;
-      const normalized = {
-        id: card.card_id ?? card.id,
-        message: card.message,
-        likes: card.likes_count ?? card.likes ?? 0,
-      };
-      setCards((prev) => [...prev, normalized]);
+      setCards((prev) => [...prev, response.data]);
     })
     .catch((error) => {
       console.error('There was an error creating the card!', error);
+    });
+  };
+
+  const handleLikeCard = (id) => {
+    axios.post(`http://127.0.0.1:5000/cards/${id}/like`)
+    .then((response) => {
+      setCards((prevCards) =>
+        prevCards.map((c) => (c.card_id === response.data.card_id ? response.data : c))
+      );
+    })
+    .catch((error) => {
+      console.error('There was an error liking the card!', error);
     });
   };
 
@@ -97,7 +83,7 @@ function App() {
         <Board
           boards={boards}
           onSelectBoard={handleSelectBoard}
-          selectedBoardId={selectedBoard?.id}
+          selectedBoardId={selectedBoard?.board_id}
         />
       </aside>
       <main>
@@ -113,17 +99,21 @@ function App() {
                 {" "}({selectedBoard.owner})
               </span>
             </h1>
+
           ): (
             <h1>Select a board</h1>
           )
         }
         </div>
         <div className="card-list">
-          <CardList
-            cards={cards}
-            onDeleteCard={handleDeleteCard}
-            onCreateCard={handleCreateCard}
-          />
+          {selectedBoard &&
+            <CardList
+              cards={cards}
+              onDeleteCard={handleDeleteCard}
+              onCreateCard={handleCreateCard}
+              onLikeCard={handleLikeCard}
+            />
+          }
         </div>
       </main>
     </div>

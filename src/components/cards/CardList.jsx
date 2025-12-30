@@ -4,22 +4,23 @@ import AddCardButton from './AddCardButton.jsx';
 import './CardList.css';
 
 const CardList = ({ cards, onDeleteCard, onCreateCard, onLikeCard }) => {
-  const noop = () => {};
+
   const getCardListJSX = (cards) => {
     return cards.map((card) => {
       return (
         <Card
           card={card}
           onDeleteCard={onDeleteCard}
-          onLikeCard={onLikeCard || noop}
+          onLikeCard={onLikeCard}
         />
       );
     });
   };
+
   return (
     <ul className="cards__list no-bullet">
       {getCardListJSX(cards)}
-      <AddCardButton onCreateCard={onCreateCard || noop} />
+      <AddCardButton onCreateCard={onCreateCard} />
     </ul>
   )
 };
@@ -27,14 +28,14 @@ const CardList = ({ cards, onDeleteCard, onCreateCard, onLikeCard }) => {
 CardList.propTypes = {
   cards: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      likes: PropTypes.number.isRequired,
+      card_id: PropTypes.number.isRequired,
+      likes_count: PropTypes.number.isRequired,
       message: PropTypes.string.isRequired,
     })
   ).isRequired,
   onDeleteCard: PropTypes.func.isRequired,
-  onCreateCard: PropTypes.func,
-  onLikeCard: PropTypes.func,
+  onCreateCard: PropTypes.func.isRequired,
+  onLikeCard: PropTypes.func.isRequired,
 };
 
 export default CardList;

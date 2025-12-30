@@ -9,12 +9,12 @@ const BoardList = ({boards, onSelectBoard, selectedBoardId}) => {
     <ul className="board-list">
       {boards.map((item) => (
         <BoardItem 
-          key={item.id}
-          id={item.id}
+          key={item.board_id}
+          id={item.board_id}
           title={item.title}
           owner={item.owner}
           onSelectBoard={onSelectBoard}
-          isSelected={item.id === selectedBoardId}
+          isSelected={item.board_id === selectedBoardId}
         />
       ))}
       <li>
@@ -30,7 +30,7 @@ const BoardList = ({boards, onSelectBoard, selectedBoardId}) => {
 BoardList.propTypes = {
   boards: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      board_id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       owner: PropTypes.string.isRequired
     })

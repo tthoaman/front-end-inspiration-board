@@ -5,7 +5,7 @@ import pinRed from "../../assets/red-pin.png";
 import deleteIcon from "../../assets/delete.png";
 
 const Card = ({card, onDeleteCard, onLikeCard}) => {
-  const {id, message, likes} = card
+  const {card_id, message, likes_count} = card
 
   return (
     <article className="card">
@@ -21,20 +21,20 @@ const Card = ({card, onDeleteCard, onLikeCard}) => {
           {/* heart button */}
           <button
             className="card__likeBtn button"
-            onClick={() => onLikeCard(id)}
+            onClick={() => onLikeCard(card_id)}
             aria-label="Like"
           >
             <img src={heartIcon} alt="Heart icon" />
           </button>
 
           {/* likes counter */}
-          <span className="card__likesCount">{likes}</span>
+          <span className="card__likesCount">{likes_count}</span>
         </div>
 
         {/* delete */}
         <button
           className="card__delete button"
-          onClick={() => onDeleteCard(id)}
+          onClick={() => onDeleteCard(card_id)}
           aria-label="Delete card"
         >
           <img src={deleteIcon} alt="Delete icon" />
@@ -47,9 +47,9 @@ const Card = ({card, onDeleteCard, onLikeCard}) => {
 Card.propTypes = {
   card: PropTypes.shape(
     {
-    id: PropTypes.number.isRequired,
+    card_id: PropTypes.number.isRequired,
     message: PropTypes.string.isRequired,
-    likes: PropTypes.number.isRequired,
+    likes_count: PropTypes.number.isRequired,
     }
   ),
   onDeleteCard: PropTypes.func.isRequired,
