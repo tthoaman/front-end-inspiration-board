@@ -30,9 +30,9 @@ function App() {
 
         setCards(
           cardsData.map((card) => ({
-            card_id: card.card_id ?? card.id,
+            id: card.card_id ?? card.id,
             message: card.message,
-            likesCount: card.likes_count ?? card.likesCount ?? 0,
+            likes: card.likes_count ?? card.likes ?? 0,
           }))
         );
       })
@@ -65,7 +65,7 @@ function App() {
   const handleDeleteCard = (id) => {
     axios.delete(`http://127.0.0.1:5000/cards/${id}`)
     .then(() => {
-      setCards((prevCards) => prevCards.filter((card) => card.card_id !== id));
+      setCards((prevCards) => prevCards.filter((card) => card.id !== id));
     })
     .catch((error) => {
       console.error('There was an error deleting the card!', error);
@@ -78,7 +78,13 @@ function App() {
       { message }
     )
     .then((response) => {
-      setCards((prev) => [...prev, response.data]);
+      const card = response.data;
+      const normalized = {
+        id: card.card_id ?? card.id,
+        message: card.message,
+        likes: card.likes_count ?? card.likes ?? 0,
+      };
+      setCards((prev) => [...prev, normalized]);
     })
     .catch((error) => {
       console.error('There was an error creating the card!', error);
