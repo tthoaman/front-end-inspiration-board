@@ -1,17 +1,54 @@
+/* Modal overlay with backdrop blur */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: rgb(153, 100, 54);
+  color: #222;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  width: 480px;
+  height: 380px;
+  box-sizing: border-box;
+  padding: 8px;
+}
+
+.modalHeader {
+  color: black;
+  background-color: bisque;
+  width: fit-content;
+  margin: 0 auto;
+  padding-inline: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.55);
+  border-radius: 10px;
+}
+
+.modalBody {
+  padding: 16px;
+}
+
 .newBoardForm {
   display: grid;
   gap: 14px;
 }
 
-.formRow label {
+.newBoardForm .formRow label {
   display: block;
   font-weight: 700;
   margin-bottom: 6px;
   color: rgba(60, 35, 18, 0.85);
 }
 
-.formRow input,
-.formRow select {
+.newBoardForm .formRow input,
+.newBoardForm .formRow select {
   width: 100%;
   height: 42px;
   padding: 0 12px;
@@ -22,8 +59,8 @@
   outline: none;
 }
 
-.formRow input:focus,
-.formRow select:focus {
+.newBoardForm .formRow input:focus,
+.newBoardForm .formRow select:focus {
   border-color: rgba(156, 106, 62, 0.65);
   box-shadow:
     inset 0 1px 2px rgba(0,0,0,0.10),
@@ -31,14 +68,14 @@
 }
 
 /* buttons row */
-.formActions {
+.newBoardForm .formActions {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
   margin-top: 6px;
 }
 
-.btnPaper {
+.newBoardForm .btnPaper {
   height: 40px;
   padding: 0 16px;
   border-radius: 10px;
@@ -50,7 +87,7 @@
   box-shadow: 0 8px 18px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.6);
 }
 
-.btnPin {
+.newBoardForm .btnPin {
   height: 44px;
   padding: 0 22px;
   border-radius: 999px;
