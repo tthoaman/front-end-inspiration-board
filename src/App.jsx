@@ -3,7 +3,9 @@ import axios from 'axios'
 import CardList from './components/cards/CardList';
 import Board from './components/boards/Board';
 import './App.css'
-const BACKEND_URL = import.meta.env.VITE_APP_BACKEND_URL;
+import { BACKEND_URL } from "./config";
+
+fetch(`${BACKEND_URL}/boards`);
 
 function App() {
   const [cards, setCards] = useState([]);
