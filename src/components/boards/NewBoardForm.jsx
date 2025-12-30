@@ -6,7 +6,7 @@ const kDefaultFormState = {
   owner: ''
 };
 
-const NewBoardForm = ({ onHandleSubmit }) => {
+const NewBoardForm = ({ onHandleSubmit, onCancel, className }) => {
   const [formData, setFormData] = useState(kDefaultFormState);
 
   const handleChange = (event) => {
@@ -47,7 +47,7 @@ const NewBoardForm = ({ onHandleSubmit }) => {
   };
 
   return (
-    <div>
+    <div className={className}>
       <h1>Create a board</h1>
       <form onSubmit={handleSubmit}>
         {makeControlledInput('title')}
@@ -55,6 +55,7 @@ const NewBoardForm = ({ onHandleSubmit }) => {
 
         <div>
           <input type="submit" value="Create board" />
+          {onCancel && <button type="button" onClick={onCancel}>Cancel</button>}
         </div>
       </form>
     </div>
