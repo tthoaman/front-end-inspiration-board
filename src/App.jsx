@@ -80,6 +80,17 @@ function App() {
     });
   };
 
+  const handleCreateBoard = (newBoard) => {
+    console.log("Creating new board:", newBoard)
+    axios.post(`${BACKEND_URL}/boards`, newBoard)
+    .then(response => {
+      setBoards((prevBoards) => [...prevBoards, response.data]);
+      setSelectedBoard(response.data);
+      showCardsForSelectedBoard(response.data);
+    })
+    .catch(error => console.error('There was an error when creating a board!', error));
+  };
+
   return (
     <div className='app'>
       <aside className="sidebar">
@@ -87,7 +98,7 @@ function App() {
           boards={boards}
           onSelectBoard={handleSelectBoard}
           selectedBoardId={selectedBoard?.board_id}
-          onCreateBoard={(newBoard) => console.log("Creating new board:", newBoard)}
+          onCreateBoard={handleCreateBoard}
         />
       </aside>
       <main>

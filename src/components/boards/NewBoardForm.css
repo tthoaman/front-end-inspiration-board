@@ -26,16 +26,15 @@
 .modalHeader {
   color: black;
   background-color: bisque;
-  margin: 0 auto;
+  margin: 12px auto 0px auto;
   padding-inline: 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.55);
-  border-radius: 10px;
-  display:flex;
-  justify-content:center;
+  border-radius: 4px;
+  line-height: 20px;
 }
 
 .modalBody {
-  padding: 16px;
+  padding: 16px 0px;
   flex: 1;
 }
 
@@ -44,7 +43,7 @@
   padding:16px;
   display:flex;
   flex-direction:column;
-  gap:12px;
+  justify-content: space-evenly;
 }
 
 .newBoardForm .formRow label {
@@ -84,7 +83,7 @@
 .newBoardForm .btnPaper {
   height: 44px;
   padding: 0 22px;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 2px solid rgba(120, 85, 55, 0.25);
   background: linear-gradient(180deg, #f4ead9, #ead8bd);
   cursor: pointer;
