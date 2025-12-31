@@ -17,6 +17,7 @@ const NewBoardForm = ({ onCreateBoard, onCloseForm, formVisible }) => {
     event.preventDefault();
     onCreateBoard({ ...formData });
     setFormData(kDefaultFormState);
+    onCloseForm();
   };
 
   if (!formVisible) {
@@ -57,7 +58,7 @@ const NewBoardForm = ({ onCreateBoard, onCloseForm, formVisible }) => {
             </div>
 
             <div className="formActions">
-              <button type="button" className="btnPaper" onClick={() => setFormData(kDefaultFormState)}>
+              <button type="button" className="btnPaper" onClick={() => {setFormData(kDefaultFormState); onCloseForm()}}>
                 Cancel
               </button>
               <button type="submit" className="btnPin">

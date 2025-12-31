@@ -19,25 +19,32 @@
   height: 380px;
   box-sizing: border-box;
   padding: 8px;
+  display:flex;
+  flex-direction:column;
 }
 
 .modalHeader {
   color: black;
   background-color: bisque;
-  width: fit-content;
   margin: 0 auto;
   padding-inline: 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.55);
   border-radius: 10px;
+  display:flex;
+  justify-content:center;
 }
 
 .modalBody {
   padding: 16px;
+  flex: 1;
 }
 
 .newBoardForm {
-  display: grid;
-  gap: 14px;
+  height:100%;
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
 }
 
 .newBoardForm .formRow label {
@@ -51,7 +58,6 @@
 .newBoardForm .formRow select {
   width: 100%;
   height: 42px;
-  padding: 0 12px;
   border-radius: 10px;
   border: 2px solid rgba(120, 85, 55, 0.30);
   background: rgba(255, 255, 255, 0.55);
@@ -76,8 +82,8 @@
 }
 
 .newBoardForm .btnPaper {
-  height: 40px;
-  padding: 0 16px;
+  height: 44px;
+  padding: 0 22px;
   border-radius: 10px;
   border: 2px solid rgba(120, 85, 55, 0.25);
   background: linear-gradient(180deg, #f4ead9, #ead8bd);

@@ -87,6 +87,7 @@ function App() {
           boards={boards}
           onSelectBoard={handleSelectBoard}
           selectedBoardId={selectedBoard?.board_id}
+          onCreateBoard={(newBoard) => console.log("Creating new board:", newBoard)}
         />
       </aside>
       <main>
