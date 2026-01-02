@@ -3,17 +3,39 @@ import './Card.css'
 import heartIcon from "../../assets/heart.svg";
 import pinRed from "../../assets/red-pin.png";
 import deleteIcon from "../../assets/delete.png";
+import { useState } from 'react';
 
-const Card = ({card, onDeleteCard, onLikeCard}) => {
+const Card = ({ card, onDeleteCard, onLikeCard, onEditCard }) => {
   const {card_id, message, likes_count} = card
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedMessage, setEditedMessage] = useState(message);
+
+  const handleSave = () => {
+    onEditCard(card_id, editedMessage);
+    setIsEditing(false);
+  };
 
   return (
     <article className="card">
       {/* pin */}
       <div className="card__pin" aria-hidden="true" style={{ backgroundImage: `url(${pinRed})` }} />
-
+      
       {/* message */}
-      <p className="card__message">{message}</p>
+      {isEditing ? (
+        <textarea
+          value={editedMessage}
+          onChange={(e) => setEditedMessage(e.target.value)}
+          onBlur={handleSave}
+          autoFocus
+        />
+      ) : (
+        <p
+          className="card__message"
+          onClick={() => setIsEditing(true)}
+        >
+          {message}
+        </p>
+      )}
 
       {/* footer */}
       <footer className="card__footer">

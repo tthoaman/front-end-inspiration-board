@@ -68,6 +68,17 @@ function App() {
     });
   };
 
+  const handleEditCard = (id, message) => {
+    axios.patch(`${BACKEND_URL}/cards/${id}`, { message })
+      .then((response) => {
+      setCards((prev) => prev.map((card) => 
+        card.card_id === response.data.card_id ? response.data : card));
+    })
+      .catch((error) => {
+        console.error('There was an error creating the card!', error);
+    });
+  }
+
   const handleLikeCard = (id) => {
     axios.post(`${BACKEND_URL}/cards/${id}/like`)
     .then((response) => {
@@ -90,6 +101,7 @@ function App() {
     })
     .catch(error => console.error('There was an error when creating a board!', error));
   };
+
 
   return (
     <div className='app'>
@@ -127,6 +139,8 @@ function App() {
               onDeleteCard={handleDeleteCard}
               onCreateCard={handleCreateCard}
               onLikeCard={handleLikeCard}
+              onEditCard={handleEditCard}
+
             />
           }
         </div>

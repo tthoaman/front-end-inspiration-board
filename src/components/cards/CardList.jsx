@@ -3,7 +3,7 @@ import Card from './Card.jsx';
 import AddCardButton from './AddCardButton.jsx';
 import './CardList.css';
 
-const CardList = ({ cards, onDeleteCard, onCreateCard, onLikeCard }) => {
+const CardList = ({ cards, onDeleteCard, onCreateCard, onLikeCard, onEditCard }) => {
 
   const getCardListJSX = (cards) => {
     return cards.map((card) => {
@@ -12,6 +12,7 @@ const CardList = ({ cards, onDeleteCard, onCreateCard, onLikeCard }) => {
           card={card}
           onDeleteCard={onDeleteCard}
           onLikeCard={onLikeCard}
+          onEditCard={onEditCard}
         />
       );
     });
