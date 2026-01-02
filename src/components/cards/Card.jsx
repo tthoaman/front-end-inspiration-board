@@ -23,6 +23,7 @@ const Card = ({ card, onDeleteCard, onLikeCard, onEditCard }) => {
       {/* message */}
       {isEditing ? (
         <textarea
+          className="add_card__input"
           value={editedMessage}
           onChange={(e) => setEditedMessage(e.target.value)}
           onBlur={handleSave}
