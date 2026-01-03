@@ -5,7 +5,7 @@ import plusIcon from '../../assets/plus-icon.png'
 import './BoardList.css';
 import NewBoardForm from "./NewBoardForm";
 
-const BoardList = ({ boards, onSelectBoard, selectedBoardId, onCreateBoard }) => {
+const BoardList = ({ boards, onSelectBoard, selectedBoardId, onCreateBoard, onDeleteBoard }) => {
   
   const [isFormOpen, setIsCreateOpen] = useState(false);
   
@@ -23,6 +23,7 @@ const BoardList = ({ boards, onSelectBoard, selectedBoardId, onCreateBoard }) =>
             owner={item.owner}
             onSelectBoard={onSelectBoard}
             isSelected={item.board_id === selectedBoardId}
+            onDeleteBoard={onDeleteBoard}
           />
         ))}
         <li>
@@ -52,6 +53,7 @@ BoardList.propTypes = {
   onSelectBoard: PropTypes.func.isRequired,
   selectedBoardId: PropTypes.number,
   onCreateBoard: PropTypes.func,
+  onDeleteBoard: PropTypes.func
 };
 
 export default BoardList;
