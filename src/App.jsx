@@ -102,6 +102,16 @@ function App() {
     .catch(error => console.error('There was an error when creating a board!', error));
   };
 
+  const handleDeleteBoard = (id) => {
+    axios.delete(`${BACKEND_URL}/boards/${id}`)
+    .then(() => {
+      setBoards((prevBoards) => prevBoards.filter((board) => board.board_id !== id));
+    })
+    .catch((error) => {
+      console.error('There was an error deleting the board!', error);
+    });
+  };
+
 
   return (
     <div className='app'>
@@ -111,6 +121,7 @@ function App() {
           onSelectBoard={handleSelectBoard}
           selectedBoardId={selectedBoard?.board_id}
           onCreateBoard={handleCreateBoard}
+          onDeleteBoard={handleDeleteBoard}
         />
       </aside>
       <main>
