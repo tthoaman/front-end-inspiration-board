@@ -103,10 +103,23 @@ function App() {
   };
 
   const handleDeleteBoard = (id) => {
+    const board = boards.find((b) => b.board_id === id);
+    const cardCount = board?.cards?.length ?? board?.card_count ?? 0;
+
+    const ok = window.confirm(
+      cardCount > 0
+      ? `This board has ${cardCount} cards - deleting will remove them too. Are you sure?`
+      : "Delete this board? Are you sure?"
+    )
+    if (!ok) return;
+
     axios.delete(`${BACKEND_URL}/boards/${id}`)
     .then(() => {
       setBoards((prevBoards) => prevBoards.filter((board) => board.board_id !== id));
     })
+    setSelectedBoard((prevSelected => {
+      return prevSelected.board_id === id ? null: prevSelected;
+    }))
     .catch((error) => {
       console.error('There was an error deleting the board!', error);
     });
