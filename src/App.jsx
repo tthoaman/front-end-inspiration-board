@@ -102,8 +102,9 @@ function App() {
   };
 
   const handleDeleteBoard = (id) => {
-    const board = boards.find((b) => b.board_id === id);
-    const cardCount = board?.cards?.length ?? board?.card_count ?? 0;
+    // checking cardCount right after card is created
+    const isDeletingSelected = selectedBoard?.board_id === id; //boolean
+    const cardCount = isDeletingSelected ? cards.length: 0;
 
     const ok = window.confirm(
       cardCount > 0
@@ -112,6 +113,7 @@ function App() {
     )
     if (!ok) return;
 
+    // delete board and eixisting cards
     axios.delete(`${BACKEND_URL}/boards/${id}`)
     .then(() => {
       setBoards((prevBoards) => prevBoards.filter((board) => board.board_id !== id));
@@ -120,6 +122,9 @@ function App() {
         if (!prevSelected) return null;
         return prevSelected.board_id === id ? null: prevSelected;
       })
+
+      // important: if you deleted the selected board, clear the cards state too
+      if (isDeletingSelected) setCards([]);
     })
     .catch((error) => {
       console.error('There was an error deleting the board!', error);
