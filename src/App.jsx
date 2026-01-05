@@ -92,7 +92,6 @@ function App() {
   };
 
   const handleCreateBoard = (newBoard) => {
-    console.log("Creating new board:", newBoard)
     axios.post(`${BACKEND_URL}/boards`, newBoard)
     .then(response => {
       setBoards((prevBoards) => [...prevBoards, response.data]);
@@ -116,10 +115,12 @@ function App() {
     axios.delete(`${BACKEND_URL}/boards/${id}`)
     .then(() => {
       setBoards((prevBoards) => prevBoards.filter((board) => board.board_id !== id));
+    
+      setSelectedBoard((prevSelected) => {
+        if (!prevSelected) return null;
+        return prevSelected.board_id === id ? null: prevSelected;
+      })
     })
-    setSelectedBoard((prevSelected => {
-      return prevSelected.board_id === id ? null: prevSelected;
-    }))
     .catch((error) => {
       console.error('There was an error deleting the board!', error);
     });
