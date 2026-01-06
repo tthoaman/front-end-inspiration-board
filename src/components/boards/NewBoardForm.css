@@ -11,22 +11,38 @@
 }
 
 .modalContent {
-  background: rgb(153, 100, 54);
+  width: 401.5px;                 /* 👈 fixed width */
+  aspect-ratio: 813 / 615;        /* 👈 exact image ratio */
+  height: auto;                   /* 👈 must stay auto */
+  
+  background-image: url("../../assets/wooden-frame.png"); /* adjust path if needed */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
   color: #222;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  width: 480px;
-  height: 380px;
-  box-sizing: border-box;
-  padding: 8px;
-  display:flex;
-  flex-direction:column;
+  border-radius: 0; 
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+
+  padding: 32px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalContent h3 {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  margin-left: 35px;
+  margin-right: 35px;
+  font-size: 1.5rem;
 }
 
 .modalHeader {
   color: black;
   background-color: bisque;
-  margin: 12px auto 0px auto;
+  margin: 10px auto 0px auto;
   padding-inline: 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.55);
   border-radius: 4px;
@@ -34,13 +50,14 @@
 }
 
 .modalBody {
-  padding: 16px 0px;
+  /* padding: 16px 0px; */
   flex: 1;
 }
 
 .newBoardForm {
   height:100%;
-  padding:16px;
+  padding-right: 16px;
+  padding-left: 16px;
   display:flex;
   flex-direction:column;
   justify-content: space-evenly;
@@ -49,7 +66,7 @@
 .newBoardForm .formRow label {
   display: block;
   font-weight: 700;
-  margin-bottom: 6px;
+  margin-bottom: 1px;
   color: rgba(60, 35, 18, 0.85);
 }
 
@@ -81,7 +98,7 @@
 }
 
 .newBoardForm .btnPaper {
-  height: 44px;
+  height: 36px;
   padding: 0 22px;
   border-radius: 5px;
   border: 2px solid rgba(120, 85, 55, 0.25);
@@ -93,7 +110,7 @@
 }
 
 .newBoardForm .btnPin {
-  height: 44px;
+  height: 36px;
   padding: 0 22px;
   border-radius: 999px;
   border: none;
